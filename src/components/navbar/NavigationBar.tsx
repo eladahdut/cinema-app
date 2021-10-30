@@ -1,29 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
+import { getData } from "../../lib/api";
+import { debounce } from "lodash";
 
-type Anchor = "top" | "left" | "bottom" | "right";
+type Anchor = "right";
 
 function NavigationBar() {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
+  const [state, setState] = useState({
     right: false,
   });
+  const [searchValue, setSearchValue] = useState("");
+  const [moviesList, setMoviesList] = useState([]);
 
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
+  useEffect(() => {
+    async function setMovies() {
+      const data = await getData(searchValue);
+      setMoviesList(data);
+      console.log(moviesList);
+    }
+    setMovies();
+  }, [searchValue]);
+
+  function setMovieName(e: any) {
+    e.preventDefault();
+    setSearchValue(e.target.value);
+    console.log(searchValue);
+  }
+
+  function toggleDrawer(anchor: Anchor, open: boolean) {
+    return (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event.type === "keydown" &&
         ((event as React.KeyboardEvent).key === "Tab" ||
@@ -33,9 +47,9 @@ function NavigationBar() {
       }
       setState({ ...state, [anchor]: open });
     };
+  }
   const list = (anchor: Anchor) => (
     <Box
-      // sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}>
@@ -67,10 +81,11 @@ function NavigationBar() {
       </Box>
       <Box component="form" sx={{ width: "50%" }} noValidate autoComplete="on">
         <TextField
-          id="outlined-basic"
+          onKeyUp={debounce(setMovieName, 1000)}
+          id="outlined-search"
           label="Search movie"
-          variant="outlined"
-          placeholder="Example: The fast and th furious"
+          type="search"
+          placeholder="Example: The fast and the furious"
           sx={{ width: "100%" }}
         />
       </Box>
