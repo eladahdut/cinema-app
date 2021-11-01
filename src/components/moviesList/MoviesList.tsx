@@ -1,7 +1,18 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
+import { useEffect } from "react";
+import { useCont } from "../../context/moviesContext";
 
 export default function MoviesList() {
+
+  const moviesContext = useCont();
+  // useEffect(() => {
+      console.log(moviesContext.moviesData);
+    
+  // }, [moviesContext.moviesData])  
+
+
+
+
   return (
     <div
       style={{
