@@ -1,10 +1,9 @@
 import { useState, createContext, useContext } from "react";
 
 export const MoviesContext = createContext({
-  moviesData,
+  moviesData:{},
   setMoviesList: (list: any) => {},
 });
-
 
 
 export const useCont = () => {

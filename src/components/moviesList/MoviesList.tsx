@@ -1,24 +1,11 @@
 import Box from "@mui/material/Box";
-import { useEffect } from "react";
-import { useCont } from "../../context/moviesContext";
 
 export default function MoviesList() {
-
-  const moviesContext = useCont();
-  // useEffect(() => {
-      console.log(moviesContext.moviesData);
-    
-  // }, [moviesContext.moviesData])  
-
-
-
-
   return (
     <div
       style={{
-        backgroundColor: "rgb(117, 16, 247)",
-        backgroundImage: "linear-gradient(white, rgb(117, 16, 247))",
-        minHeight: "100vh",
+          flex:'1',
+          overflow:'hidden auto'
       }}>
       <Box
         sx={{
