@@ -1,11 +1,14 @@
 import Box from "@mui/material/Box";
+import { useCont } from "../../context/moviesContext";
 
 export default function MoviesList() {
+  const moviesContext = useCont();
+
   return (
     <div
       style={{
-          flex:'1',
-          overflow:'hidden auto'
+        flex: "1",
+        overflow: "hidden auto",
       }}>
       <Box
         sx={{
@@ -18,6 +21,7 @@ export default function MoviesList() {
         </h1>
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
+      {console.log(moviesContext?.moviesData)}
     </div>
   );
 }
