@@ -20,20 +20,21 @@ function NavigationBar() {
   const [state, setState] = useState({
     right: false,
   });
-  const [searchValue, setSearchValue] = useState("");
+  //   const [searchValue, setSearchValue] = useState("");
   const moviesContext = useCont();
 
-  useEffect(() => {}, [searchValue]);
+  //   useEffect(() => {}, [searchValue]);
 
-  async function setMovies() {
-    if (searchValue.length > 0) {
-      const data = await getData(searchValue);
-      moviesContext.setMoviesList(data);
-    }
-  }
+  //   async function setMovies() {
+  //     if (searchValue.length > 0) {
+  //       const data = await getData(searchValue);
+  //       moviesContext.setMoviesList(data);
+  //     }
+  //   }
   function setMovieName(val: any) {
-    setSearchValue(val);
-    setMovies();
+    moviesContext.setSearchValue(val);
+    // setSearchValue(val);
+    // setMovies();
   }
 
   function toggleDrawer(anchor: Anchor, open: boolean) {

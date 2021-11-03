@@ -1,8 +1,15 @@
 import Box from "@mui/material/Box";
+import { useEffect, useState } from "react";
 import { useCont } from "../../context/moviesContext";
 
 export default function MoviesList() {
   const moviesContext = useCont();
+  // const [resmovies, setResmovies] = useState([]);
+  useEffect(() => {
+    if (moviesContext.searchVal.length > 1) {
+      console.log(moviesContext.searchVal);
+    }
+  }, [moviesContext.searchVal]);
 
   return (
     <div
@@ -21,7 +28,6 @@ export default function MoviesList() {
         </h1>
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
-      {console.log(moviesContext?.moviesData)}
     </div>
   );
 }
