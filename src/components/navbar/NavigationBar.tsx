@@ -84,7 +84,8 @@ function NavigationBar() {
       <Box component="form" sx={{ width: "50%" }} noValidate autoComplete="on">
         <TextField
           onKeyUp={debounce((e) => setMovieName(e.target.value), 1500)}
-          //   onKeyUp={debounce(setMovieName, 1500)}
+          // error = {moviesContext.searchVal.length <= 1}
+          // helperText="Incorrect entry."
           id="outlined-search"
           label="Search movie"
           type="search"

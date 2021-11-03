@@ -1,15 +1,25 @@
 import Box from "@mui/material/Box";
 import { useEffect, useState } from "react";
 import { useCont } from "../../context/moviesContext";
+import { getData } from "../../lib/api";
 
 export default function MoviesList() {
   const moviesContext = useCont();
-  // const [resmovies, setResmovies] = useState([]);
+  
+  
+  
   useEffect(() => {
+    async function setMovies(val: string) {
+      const data = await getData(val);
+      moviesContext.setMoviesList(data);
+      
+    }
     if (moviesContext.searchVal.length > 1) {
-      console.log(moviesContext.searchVal);
+      setMovies(moviesContext.searchVal)
     }
   }, [moviesContext.searchVal]);
+
+
 
   return (
     <div
@@ -28,6 +38,12 @@ export default function MoviesList() {
         </h1>
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
+
+
+{
+  moviesContext.moviesData.hasOwnProperty('results') ? console.log(moviesContext.moviesData) : console.log("x")
+}
+
     </div>
   );
 }
