@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -9,7 +9,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
-import { getData } from "../../lib/api";
 import { debounce } from "lodash";
 import { useCont } from "../../context/moviesContext";
 import "./NavigationBar.scss";
