@@ -1,11 +1,21 @@
 import Box from "@mui/material/Box";
+import { useEffect, useState } from "react";
+import { useCont } from "../../context/moviesContext";
 
 export default function MoviesList() {
+  const moviesContext = useCont();
+  // const [resmovies, setResmovies] = useState([]);
+  useEffect(() => {
+    if (moviesContext.searchVal.length > 1) {
+      console.log(moviesContext.searchVal);
+    }
+  }, [moviesContext.searchVal]);
+
   return (
     <div
       style={{
-          flex:'1',
-          overflow:'hidden auto'
+        flex: "1",
+        overflow: "hidden auto",
       }}>
       <Box
         sx={{
