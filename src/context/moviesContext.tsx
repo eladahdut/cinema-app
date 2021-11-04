@@ -1,9 +1,15 @@
 import { useState, createContext, useContext } from "react";
+import { MoviesData } from "../lib/models";
 
 export const MoviesContext = createContext({
   searchVal: "",
   setSearchValue: (value: string) => {},
-  moviesData: [],
+  moviesData: {
+    page: Number,
+    results: [],
+    total_pages: Number,
+    total_results: Number,
+  },
   setMoviesList: (list: any) => {},
 });
 
@@ -12,7 +18,12 @@ export const useCont = () => {
 };
 
 const MoviesDataProvider = (props: any) => {
-  const [moviesData, setMoviesData] = useState([]);
+  const [moviesData, setMoviesData] = useState({
+    page: Number,
+    results: [],
+    total_pages: Number,
+    total_results: Number,
+  });
   const [searchVal, setSearchVal] = useState("");
 
   const setMoviesList = (list: any) => {
@@ -24,7 +35,12 @@ const MoviesDataProvider = (props: any) => {
 
   return (
     <MoviesContext.Provider
-      value={{ searchVal, setSearchValue, moviesData, setMoviesList }}>
+      value={{
+        searchVal,
+        setSearchValue,
+        moviesData,
+        setMoviesList,
+      }}>
       {props.children}
     </MoviesContext.Provider>
   );

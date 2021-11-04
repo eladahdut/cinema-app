@@ -16,12 +16,6 @@ export default function MoviesList() {
     }
   }, [moviesContext.searchVal]);
 
-  const objKeys = Object.keys(moviesContext.moviesData);
-  const viewDataArray = [];
-  objKeys.forEach((element) => {
-    console.log(element);
-  });
-
   return (
     <div
       style={{
@@ -39,9 +33,7 @@ export default function MoviesList() {
         </h1>
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
-      {/* {moviesContext.moviesData.hasOwnProperty("results")
-        ? moviesContext.moviesData
-        : console.log("x")} */}
+      {console.log(moviesContext.moviesData.results)}
     </div>
   );
 }
