@@ -4,3 +4,4 @@ export interface MoviesData {
   total_pages: number;
   total_results: number;
 }
+
