@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useCont } from "../../context/moviesContext";
 import { getData } from "../../lib/api";
 import MovieCard from "../movieCard/MovieCard";
+import "./moviesList.scss";
 
 export default function MoviesList() {
   const moviesContext = useCont();
@@ -34,9 +35,11 @@ export default function MoviesList() {
         </h1>
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
-      {moviesContext.moviesData.results.map((card, i) => {
-        return <MovieCard key={i} card={card}/>
-      })}
+      <div className="mov-container">
+        {moviesContext.moviesData.results.map((card, i) => {
+          return <MovieCard key={i} card={card} />;
+        })}
+      </div>
     </div>
   );
 }

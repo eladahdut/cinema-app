@@ -11,7 +11,6 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
 import { debounce } from "lodash";
 import { useCont } from "../../context/moviesContext";
-import "./NavigationBar.scss";
 
 type Anchor = "right";
 
@@ -19,21 +18,10 @@ function NavigationBar() {
   const [state, setState] = useState({
     right: false,
   });
-  //   const [searchValue, setSearchValue] = useState("");
   const moviesContext = useCont();
 
-  //   useEffect(() => {}, [searchValue]);
-
-  //   async function setMovies() {
-  //     if (searchValue.length > 0) {
-  //       const data = await getData(searchValue);
-  //       moviesContext.setMoviesList(data);
-  //     }
-  //   }
   function setMovieName(val: any) {
     moviesContext.setSearchValue(val);
-    // setSearchValue(val);
-    // setMovies();
   }
 
   function toggleDrawer(anchor: Anchor, open: boolean) {
@@ -83,8 +71,6 @@ function NavigationBar() {
       <Box component="form" sx={{ width: "50%" }} noValidate autoComplete="on">
         <TextField
           onKeyUp={debounce((e) => setMovieName(e.target.value), 1500)}
-          // error = {moviesContext.searchVal.length <= 1}
-          // helperText="Incorrect entry."
           id="outlined-search"
           label="Search movie"
           type="search"
