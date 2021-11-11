@@ -8,6 +8,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import FastForwardIcon from "@mui/icons-material/FastForward";
+import FastRewindIcon from "@mui/icons-material/FastRewind";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
 import { debounce } from "lodash";
 import { useCont } from "../../context/moviesContext";
@@ -20,8 +22,19 @@ function NavigationBar() {
   });
   const moviesContext = useCont();
 
-  function setMovieName(val: any) {
+  function setMovieName(val: string, event: Event) {
+    event.preventDefault();
     moviesContext.setSearchValue(val);
+  }
+
+  function handleRandMovie() {
+    let result = "";
+    let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let charactersLength = characters.length;
+    for (let i = 0; i < 3; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    moviesContext.setSearchValue(result);
   }
 
   function toggleDrawer(anchor: Anchor, open: boolean) {
@@ -50,7 +63,9 @@ function NavigationBar() {
           "Clear Movies List",
         ].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? "x" : "y"}</ListItemIcon>
+            <ListItemIcon>
+              {index % 2 === 0 ? <FastForwardIcon /> : <FastRewindIcon />}
+            </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -70,7 +85,7 @@ function NavigationBar() {
       </Box>
       <Box component="form" sx={{ width: "50%" }} noValidate autoComplete="on">
         <TextField
-          onKeyUp={debounce((e) => setMovieName(e.target.value), 1500)}
+          onKeyUp={debounce((e) => setMovieName(e.target.value, e), 1500)}
           id="outlined-search"
           label="Search movie"
           type="search"
@@ -79,7 +94,7 @@ function NavigationBar() {
         />
       </Box>
       <Box p={3} display="flex" alignItems="center">
-        <Button variant="contained" color="primary">
+        <Button onClick={handleRandMovie} variant="contained" color="secondary">
           Show Movie
         </Button>
 
@@ -87,7 +102,9 @@ function NavigationBar() {
           <div>
             {(["right"] as const).map((anchor) => (
               <React.Fragment key={anchor}>
-                <MoreVertIcon onClick={toggleDrawer(anchor, true)}>
+                <MoreVertIcon
+                  color="secondary"
+                  onClick={toggleDrawer(anchor, true)}>
                   {anchor}
                 </MoreVertIcon>
                 <Drawer

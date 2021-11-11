@@ -5,13 +5,5 @@ const url =
 
 export async function getData(query: String) {
   const response = await axios.get(url + query);
-  const dataObj = {
-    page: response.data.page,
-    results: response.data.results,
-    total_pages: response.data.total_pages,
-    total_results: response.data.total_results,
-  };
-  console.log(dataObj);
-
-  return dataObj;
+  return response.data;
 }
