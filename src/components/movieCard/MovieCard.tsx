@@ -45,7 +45,7 @@ export default function MovieCard(props: any) {
       sx={{
         width: 300,
         marginBottom: 4,
-        flexBasis: 350,
+        flexBasis: 400,
         backgroundColor: "#0000008f",
         color: "white",
       }}>
