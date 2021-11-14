@@ -27,11 +27,11 @@ function NavigationBar() {
     moviesContext.setSearchValue(val);
   }
 
-  function handleRandMovie() {
+ function handleRandMovie() {
     let result = "";
     let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     let charactersLength = characters.length;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     moviesContext.setSearchValue(result);

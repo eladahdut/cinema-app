@@ -38,8 +38,6 @@ export default function MovieCard(props: any) {
     setExpanded(!expanded);
   };
 
-  console.log(props);
-
   return (
     <Card
       sx={{

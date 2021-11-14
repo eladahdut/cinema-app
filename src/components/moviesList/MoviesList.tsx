@@ -36,6 +36,8 @@ export default function MoviesList() {
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
       <div className="mov-container">
+        {console.log(moviesContext.moviesData.results)}
+        
         {moviesContext.moviesData.results.map((card, i) => {
           return <MovieCard key={i} card={card} />;
         })}
