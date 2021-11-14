@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
 import { MoviesData } from "../lib/models";
 
 export const MoviesContext = createContext({
@@ -32,6 +32,17 @@ const MoviesDataProvider = (props: any) => {
   const setSearchValue = (val: string) => {
     setSearchVal(val);
   };
+
+  // useEffect(() => {
+  //   console.log(moviesData);
+
+  //   // const tabs = Object.keys(moviesData);
+  //   // console.log(tabs);
+  //   // tabs.forEach((tab, i) => {
+  //   //   const editedObj = {};
+  //   //   console.log(tab, " : ", i);
+  //   // });
+  // }, [moviesData]);
 
   return (
     <MoviesContext.Provider

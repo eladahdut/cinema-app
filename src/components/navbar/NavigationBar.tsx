@@ -27,7 +27,7 @@ function NavigationBar() {
     moviesContext.setSearchValue(val);
   }
 
- function handleRandMovie() {
+  function handleRandMovie() {
     let result = "";
     let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     let charactersLength = characters.length;
@@ -85,8 +85,8 @@ function NavigationBar() {
       </Box>
       <Box component="form" sx={{ width: "50%" }} noValidate autoComplete="on">
         <TextField
-          onKeyUp={debounce((e) => setMovieName(e.target.value, e), 1500)}
-          id="outlined-search"
+          color="secondary"
+          onKeyUp={debounce((e) => setMovieName(e.target.value, e), 1000)}
           label="Search movie"
           type="search"
           placeholder="Example: The fast and the furious"

@@ -11,12 +11,30 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { FormControlLabel } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import FormControl from "@mui/material/FormControl";
+import { Button, FormControlLabel } from "@mui/material";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  backgroundColor: "#fff",
+  border: "2px solid #7510F7",
+  boxShadow: 24,
+  p: 4,
+};
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
@@ -31,6 +49,24 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export default function MovieCard(props: any) {
   const [expanded, setExpanded] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [movieName, setMovieName] = React.useState("");
+  const [overview, setOverview] = React.useState("");
+
+  function toggleModal() {
+    setOpen(!open);
+  }
+  function handleEdit() {
+    console.log(movieName, overview);
+  }
+
+  function setEditedMovieName(val: string) {
+    setMovieName(val);
+  }
+  function setEditedOverview(val: string) {
+    setOverview(val);
+  }
+
   const noImg =
     "https://kfcb.go.ke/sites/default/files/styles/film/public/2021-03/500x735_0_0_64.png?itok=9OY_x7fE";
 
@@ -50,12 +86,14 @@ export default function MovieCard(props: any) {
       <CardHeader
         sx={{ minHeight: 180 }}
         action={
-          <IconButton aria-label="settings" sx={{ color: "white" }}>
-            <MoreVertIcon />
+          <IconButton
+            onClick={toggleModal}
+            aria-label="settings"
+            sx={{ color: "white" }}>
+            <EditIcon />
           </IconButton>
         }
         title={props.card.title}
-        // subheader={}
       />
       <CardMedia
         component="img"
@@ -94,6 +132,47 @@ export default function MovieCard(props: any) {
           <Typography paragraph>{props.card.overview}</Typography>
         </CardContent>
       </Collapse>
+
+      <Dialog open={open} onClose={toggleModal}>
+        <DialogTitle>Edit Movie</DialogTitle>
+        <br />
+        <DialogContent>
+          <FormControl sx={{ width: "25ch" }}>
+            <TextField
+              focused
+              label="Movie Name"
+              placeholder={props.card.title}
+              color="secondary"
+              onKeyUp={(e) =>
+                setEditedMovieName((e.target as HTMLInputElement).value)
+              }
+            />
+          </FormControl>
+          <br />
+          <br />
+          <FormControl sx={{ width: "25ch" }}>
+            <TextField
+              color="secondary"
+              id="outlined-multiline-static"
+              label="Overview"
+              multiline
+              rows={8}
+              defaultValue={props.card.overview}
+              onKeyUp={(e) =>
+                setEditedOverview((e.target as HTMLInputElement).value)
+              }
+            />
+          </FormControl>
+        </DialogContent>
+        <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+          <Button color="secondary" onClick={handleEdit}>
+            Edit
+          </Button>
+          <Button color="secondary" onClick={toggleModal}>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 }

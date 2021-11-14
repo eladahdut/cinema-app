@@ -5,5 +5,5 @@ const url =
 
 export async function getData(query: String) {
   const response = await axios.get(url + query);
-   return response.data;
+  return response.data;
 }
