@@ -91,6 +91,7 @@ function NavigationBar() {
           type="search"
           placeholder="Example: The fast and the furious"
           sx={{ width: "100%" }}
+          helperText="Live Search"
         />
       </Box>
       <Box p={3} display="flex" alignItems="center">

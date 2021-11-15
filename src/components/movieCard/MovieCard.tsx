@@ -57,7 +57,6 @@ export default function MovieCard(props: any) {
     setOpen(!open);
   }
   function handleEdit() {
-    console.log(movieName, overview);
     props.card.title = movieName;
     props.card.overview = overview;
     toggleModal();
@@ -68,6 +67,10 @@ export default function MovieCard(props: any) {
   }
   function setEditedOverview(val: string) {
     setOverview(val);
+  }
+
+  function addToFavorites(movieObj: object) {
+    console.log(movieObj);
   }
 
   const noImg =
@@ -110,7 +113,9 @@ export default function MovieCard(props: any) {
       />
       <CardContent>{"release date: " + props.card.release_date}</CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          onClick={(e) => addToFavorites(props.card)}
+          aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">

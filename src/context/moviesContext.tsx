@@ -1,5 +1,4 @@
-import { useState, createContext, useContext, useEffect } from "react";
-import { MoviesData } from "../lib/models";
+import { useState, createContext, useContext } from "react";
 
 export const MoviesContext = createContext({
   searchVal: "",
@@ -11,6 +10,8 @@ export const MoviesContext = createContext({
     total_results: Number,
   },
   setMoviesList: (list: any) => {},
+  favoriteMovies: {},
+  setFavoriteMovies: (fav: {}) => {},
 });
 
 export const useCont = () => {
@@ -25,6 +26,7 @@ const MoviesDataProvider = (props: any) => {
     total_results: Number,
   });
   const [searchVal, setSearchVal] = useState("");
+  const [favoriteMovies, setFavoriteMovies] = useState({});
 
   const setMoviesList = (list: any) => {
     setMoviesData(list);
@@ -32,17 +34,9 @@ const MoviesDataProvider = (props: any) => {
   const setSearchValue = (val: string) => {
     setSearchVal(val);
   };
-
-  // useEffect(() => {
-  //   console.log(moviesData);
-
-  //   // const tabs = Object.keys(moviesData);
-  //   // console.log(tabs);
-  //   // tabs.forEach((tab, i) => {
-  //   //   const editedObj = {};
-  //   //   console.log(tab, " : ", i);
-  //   // });
-  // }, [moviesData]);
+  const setFavorites = (movieObj: any): any => {
+    setFavoriteMovies(movieObj);
+  };
 
   return (
     <MoviesContext.Provider
@@ -51,6 +45,8 @@ const MoviesDataProvider = (props: any) => {
         setSearchValue,
         moviesData,
         setMoviesList,
+        favoriteMovies,
+        setFavorites,
       }}>
       {props.children}
     </MoviesContext.Provider>
@@ -58,3 +54,20 @@ const MoviesDataProvider = (props: any) => {
 };
 
 export default MoviesDataProvider;
+
+// {
+//   adult: boolean,
+//   backdrop_path: any,
+//   genre_ids: []number,
+//   id: number,
+//   original_language: string,
+//   original_title: string,
+//   overview: string,
+//   popularity: number,
+//   poster_path: string,
+//   release_date: string,
+//   title: string,
+//   video: boolean,
+//   vote_average: number,
+//   vote_count: number,
+// }
