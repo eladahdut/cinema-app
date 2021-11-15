@@ -58,6 +58,9 @@ export default function MovieCard(props: any) {
   }
   function handleEdit() {
     console.log(movieName, overview);
+    props.card.title = movieName;
+    props.card.overview = overview;
+    toggleModal();
   }
 
   function setEditedMovieName(val: string) {
