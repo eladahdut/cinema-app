@@ -50,15 +50,18 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 export default function MovieCard(props: any) {
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [movieName, setMovieName] = React.useState("");
-  const [overview, setOverview] = React.useState("");
+  const [movieName, setMovieName] = React.useState(props.card.title);
+  const [overview, setOverview] = React.useState(props.card.overview);
 
   function toggleModal() {
     setOpen(!open);
   }
   function handleEdit() {
-    props.card.title = movieName;
-    props.card.overview = overview;
+    props.card.title !== movieName ? 
+    props.card.title = movieName : props.card.title=props.card.title;
+
+    props.card.overview !== overview ?
+    props.card.overview = overview : props.card.overview=props.card.overview ;
     toggleModal();
   }
 
