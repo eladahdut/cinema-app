@@ -1,17 +1,13 @@
 import { useState, createContext, useContext } from "react";
+import { CardData, MoviesData, MyContext } from "../lib/models";
 
-export const MoviesContext = createContext({
+export const MoviesContext = createContext<MyContext>({
   searchVal: "",
   setSearchValue: (value: string) => {},
-  moviesData: {
-    page: Number,
-    results: [],
-    total_pages: Number,
-    total_results: Number,
-  },
+  moviesData: null,
   setMoviesList: (list: any) => {},
-  favoriteMovies: {},
-  setFavoriteMovies: (fav: {}) => {},
+  favoriteMovies: [],
+  setFavoriteMovies: (fav: []) => {},
 });
 
 export const useCont = () => {
@@ -19,23 +15,18 @@ export const useCont = () => {
 };
 
 const MoviesDataProvider = (props: any) => {
-  const [moviesData, setMoviesData] = useState({
-    page: Number,
-    results: [],
-    total_pages: Number,
-    total_results: Number,
-  });
+  const [moviesData, setMoviesData] = useState<MoviesData | null>(null);
   const [searchVal, setSearchVal] = useState("");
-  const [favoriteMovies, setFavoriteMovies] = useState({});
+  const [favoriteMovies, setFavorites] = useState<CardData[]>([]);
 
-  const setMoviesList = (list: any) => {
+  const setMoviesList = (list: any): void => {
     setMoviesData(list);
   };
-  const setSearchValue = (val: string) => {
+  const setSearchValue = (val: string): void => {
     setSearchVal(val);
   };
-  const setFavorites = (movieObj: any): any => {
-    setFavoriteMovies(movieObj);
+  const setFavoriteMovies = (movieObj: any): void => {
+    setFavorites(movieObj);
   };
 
   return (
@@ -46,7 +37,7 @@ const MoviesDataProvider = (props: any) => {
         moviesData,
         setMoviesList,
         favoriteMovies,
-        setFavorites,
+        setFavoriteMovies,
       }}>
       {props.children}
     </MoviesContext.Provider>

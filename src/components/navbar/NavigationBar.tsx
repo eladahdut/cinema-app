@@ -87,6 +87,9 @@ function NavigationBar() {
         <TextField
           color="secondary"
           onKeyUp={debounce((e) => setMovieName(e.target.value, e), 1000)}
+          onKeyPress={(e) => {
+            e.key === "Enter" && e.preventDefault();
+          }}
           label="Search movie"
           type="search"
           placeholder="Example: The fast and the furious"
