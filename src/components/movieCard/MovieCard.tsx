@@ -20,6 +20,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import FormControl from "@mui/material/FormControl";
 import { Button, FormControlLabel } from "@mui/material";
 import { useCont } from "../../context/moviesContext";
+import { CardData } from "../../lib/models";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -59,11 +60,13 @@ export default function MovieCard(props: any) {
     setOpen(!open);
   }
   function handleEdit() {
-    props.card.title !== movieName ? 
-    props.card.title = movieName : props.card.title=props.card.title;
+    props.card.title !== movieName
+      ? (props.card.title = movieName)
+      : (props.card.title = props.card.title);
 
-    props.card.overview !== overview ?
-    props.card.overview = overview : props.card.overview=props.card.overview ;
+    props.card.overview !== overview
+      ? (props.card.overview = overview)
+      : (props.card.overview = props.card.overview);
     toggleModal();
   }
 
@@ -74,9 +77,10 @@ export default function MovieCard(props: any) {
     setOverview(val);
   }
 
-  function addToFavorites(movieObj: object) {
+  function addToFavorites(movieObj: CardData) {
     console.log(movieObj);
-    moviesContext.setFavoriteMovies(movieObj)
+    moviesContext.setFavoriteMovies(movieObj);
+    console.log(moviesContext.favoriteMovies);
   }
 
   const noImg =

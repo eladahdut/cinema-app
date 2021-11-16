@@ -28,5 +28,5 @@ export interface MyContext {
   moviesData: MoviesData | null;
   setMoviesList: (list: any) => void;
   favoriteMovies: CardData[];
-  setFavoriteMovies: (fav: []) => void;
+  setFavoriteMovies: (fav: CardData) => void;
 }

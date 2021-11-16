@@ -5,16 +5,18 @@ import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import FastForwardIcon from "@mui/icons-material/FastForward";
-import FastRewindIcon from "@mui/icons-material/FastRewind";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
+import AddIcon from "@mui/icons-material/Add";
+import ListIcon from "@mui/icons-material/List";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { debounce } from "lodash";
 import { useCont } from "../../context/moviesContext";
+import { fontSize } from "@mui/system";
 
 type Anchor = "right";
+
+const liStyle = { display: "flex", alignItems: "center", fontSize: "1.3rem" };
 
 function NavigationBar() {
   const [state, setState] = useState({
@@ -56,19 +58,18 @@ function NavigationBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
-        {[
-          "Add Movie",
-          "Movie List",
-          "Favorite Movies",
-          "Clear Movies List",
-        ].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <FastForwardIcon /> : <FastRewindIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button sx={liStyle}>
+          <AddIcon fontSize="small" />
+          &nbsp;Add Movie
+        </ListItem>
+        <ListItem button sx={liStyle}>
+          <ListIcon fontSize="small" />
+          &nbsp;Movie List
+        </ListItem>
+        <ListItem button sx={liStyle}>
+          <FavoriteIcon fontSize="small" />
+          &nbsp;Favorite Movies
+        </ListItem>
       </List>
     </Box>
   );

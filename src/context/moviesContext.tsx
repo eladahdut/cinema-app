@@ -7,7 +7,7 @@ export const MoviesContext = createContext<MyContext>({
   moviesData: null,
   setMoviesList: (list: any) => {},
   favoriteMovies: [],
-  setFavoriteMovies: (fav: []) => {},
+  setFavoriteMovies: (fav: CardData) => {},
 });
 
 export const useCont = () => {
@@ -25,11 +25,8 @@ const MoviesDataProvider = (props: any) => {
   const setSearchValue = (val: string): void => {
     setSearchVal(val);
   };
-  const setFavoriteMovies = (movieObj: object): void => {
-    setFavorites((prevState) => ({
-      ...prevState,
-      movieObj
-    }));
+  const setFavoriteMovies = (movieObj: CardData): void => {
+    setFavorites((prevState) => [...prevState, movieObj]);
   };
 
   return (
