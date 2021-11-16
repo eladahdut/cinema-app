@@ -19,6 +19,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import FormControl from "@mui/material/FormControl";
 import { Button, FormControlLabel } from "@mui/material";
+import { useCont } from "../../context/moviesContext";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -48,6 +49,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 export default function MovieCard(props: any) {
+  const moviesContext = useCont();
   const [expanded, setExpanded] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [movieName, setMovieName] = React.useState(props.card.title);
@@ -74,6 +76,7 @@ export default function MovieCard(props: any) {
 
   function addToFavorites(movieObj: object) {
     console.log(movieObj);
+    moviesContext.setFavoriteMovies(movieObj)
   }
 
   const noImg =

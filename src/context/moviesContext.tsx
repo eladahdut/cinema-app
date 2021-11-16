@@ -25,8 +25,11 @@ const MoviesDataProvider = (props: any) => {
   const setSearchValue = (val: string): void => {
     setSearchVal(val);
   };
-  const setFavoriteMovies = (movieObj: any): void => {
-    setFavorites(movieObj);
+  const setFavoriteMovies = (movieObj: object): void => {
+    setFavorites((prevState) => ({
+      ...prevState,
+      movieObj
+    }));
   };
 
   return (
