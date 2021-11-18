@@ -26,17 +26,17 @@ interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  backgroundColor: "#fff",
-  border: "2px solid #7510F7",
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   position: "absolute" as "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 400,
+//   backgroundColor: "#fff",
+//   border: "2px solid #7510F7",
+//   boxShadow: 24,
+//   p: 4,
+// };
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
@@ -78,9 +78,16 @@ export default function MovieCard(props: any) {
   }
 
   function addToFavorites(movieObj: CardData) {
-    console.log(movieObj);
-    moviesContext.setFavoriteMovies(movieObj);
-    console.log(moviesContext.favoriteMovies);
+    if (moviesContext.favoriteMovies.length === 0) {
+      moviesContext.setFavoriteMovies(movieObj);
+    }
+    moviesContext.favoriteMovies.map((e) => {
+      if (e.id === movieObj.id) {
+        alert("movie is already in favorites");
+      } else {
+        moviesContext.setFavoriteMovies(movieObj);
+      }
+    });
   }
 
   const noImg =
@@ -119,7 +126,7 @@ export default function MovieCard(props: any) {
             ? "https://image.tmdb.org/t/p/w200" + props.card.poster_path
             : noImg
         }
-        alt="Paella dish"
+        alt="Poster"
       />
       <CardContent>{"release date: " + props.card.release_date}</CardContent>
       <CardActions disableSpacing>

@@ -12,7 +12,6 @@ import ListIcon from "@mui/icons-material/List";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { debounce } from "lodash";
 import { useCont } from "../../context/moviesContext";
-import { fontSize } from "@mui/system";
 
 type Anchor = "right";
 
