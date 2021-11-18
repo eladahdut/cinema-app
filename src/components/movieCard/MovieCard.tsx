@@ -21,22 +21,15 @@ import FormControl from "@mui/material/FormControl";
 import { Button, FormControlLabel } from "@mui/material";
 import { useCont } from "../../context/moviesContext";
 import { CardData } from "../../lib/models";
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+
+export interface State extends SnackbarOrigin {
+  openSnack: boolean;
+}
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
-
-// const style = {
-//   position: "absolute" as "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   width: 400,
-//   backgroundColor: "#fff",
-//   border: "2px solid #7510F7",
-//   boxShadow: 24,
-//   p: 4,
-// };
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
   const { expand, ...other } = props;
@@ -55,6 +48,51 @@ export default function MovieCard(props: any) {
   const [open, setOpen] = React.useState(false);
   const [movieName, setMovieName] = React.useState(props.card.title);
   const [overview, setOverview] = React.useState(props.card.overview);
+
+  const [state, setState] = React.useState<State>({
+    openSnack: false,
+    vertical: "top",
+    horizontal: "center",
+  });
+  const { vertical, horizontal, openSnack } = state;
+
+  const handleClick = (newState: SnackbarOrigin) => () => {
+    setState({ openSnack: true, ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, openSnack: false });
+  };
+
+  const snackButton = (
+    <React.Fragment>
+      <Button
+        onClick={handleClick({
+          vertical: "bottom",
+          horizontal: "center",
+        })}>
+        <IconButton
+          onClick={() => {
+            addToFavorites(props.card);
+            handleClick({
+              vertical: "bottom",
+              horizontal: "center",
+            });
+          }}
+          aria-label="add to favorites">
+          <FavoriteIcon />
+
+          <Snackbar
+            anchorOrigin={{ vertical, horizontal }}
+            open={openSnack}
+            onClose={handleClose}
+            message="I love snacks"
+            key={vertical + horizontal}
+          />
+        </IconButton>
+      </Button>
+    </React.Fragment>
+  );
 
   function toggleModal() {
     setOpen(!open);
@@ -130,11 +168,7 @@ export default function MovieCard(props: any) {
       />
       <CardContent>{"release date: " + props.card.release_date}</CardContent>
       <CardActions disableSpacing>
-        <IconButton
-          onClick={(e) => addToFavorites(props.card)}
-          aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+        {snackButton}
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
