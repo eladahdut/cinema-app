@@ -48,6 +48,7 @@ export default function MovieCard(props: any) {
   const [open, setOpen] = React.useState(false);
   const [movieName, setMovieName] = React.useState(props.card.title);
   const [overview, setOverview] = React.useState(props.card.overview);
+  const [snackMsg, setSnackMsg] = React.useState("Added Movie To Favorites");
 
   const [state, setState] = React.useState<State>({
     openSnack: false,
@@ -86,8 +87,9 @@ export default function MovieCard(props: any) {
             anchorOrigin={{ vertical, horizontal }}
             open={openSnack}
             onClose={handleClose}
-            message="I love snacks"
+            message={snackMsg}
             key={vertical + horizontal}
+            autoHideDuration={2500}
           />
         </IconButton>
       </Button>
@@ -121,7 +123,7 @@ export default function MovieCard(props: any) {
     }
     moviesContext.favoriteMovies.map((e) => {
       if (e.id === movieObj.id) {
-        alert("movie is already in favorites");
+        setSnackMsg("movie is already in favorites");
       } else {
         moviesContext.setFavoriteMovies(movieObj);
       }
