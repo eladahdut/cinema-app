@@ -24,9 +24,11 @@ export default function MoviesList() {
         overflow: "hidden auto",
       }}>
       <div className="mov-container">
-        {moviesContext?.moviesData?.results.map((card, i) => {
-          return <MovieCard key={i} card={card} />;
-        })}
+        {!!moviesContext?.moviesData?.results?.length
+          ? moviesContext?.moviesData?.results.map((card, i) => {
+              return <MovieCard key={i} card={card} />;
+            })
+          : "Search for movies"}
       </div>
     </div>
   );

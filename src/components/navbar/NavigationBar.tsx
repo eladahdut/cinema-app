@@ -38,6 +38,12 @@ function NavigationBar() {
     moviesContext.setSearchValue(result);
   }
 
+  async function clrMoviesList() {
+    moviesContext.setSearchValue("");
+    moviesContext.setMoviesList({});
+    console.log(moviesContext.moviesData);
+  }
+
   function toggleDrawer(anchor: Anchor, open: boolean) {
     return (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
@@ -61,9 +67,9 @@ function NavigationBar() {
           <AddIcon fontSize="small" />
           &nbsp;Add Movie
         </ListItem>
-        <ListItem button sx={liStyle}>
+        <ListItem onClick={clrMoviesList} button sx={liStyle}>
           <ListIcon fontSize="small" />
-          &nbsp;Movie List
+          &nbsp;Clear Movie List
         </ListItem>
         <ListItem button sx={liStyle}>
           <FavoriteIcon fontSize="small" />
@@ -78,12 +84,17 @@ function NavigationBar() {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      m={1}
-      p={1}>
+      // m={1}
+      // p={1}
+    >
       <Box p={3}>
         <TheatersOutlinedIcon fontSize="large" color="primary" />
       </Box>
-      <Box component="form" sx={{ width: "50%" }} noValidate autoComplete="on">
+      <Box
+        component="form"
+        sx={{ width: "50%", marginTop: "1.5rem" }}
+        noValidate
+        autoComplete="on">
         <TextField
           color="secondary"
           onKeyUp={debounce((e) => setMovieName(e.target.value, e), 1000)}
