@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -36,12 +36,19 @@ function NavigationBar() {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     moviesContext.setSearchValue(result);
+    if (moviesContext.favoritesFlag) {
+      moviesContext.setFlag(!moviesContext.favoritesFlag);
+    }
   }
 
-  async function clrMoviesList() {
-    moviesContext.setSearchValue("");
-    moviesContext.setMoviesList({});
-    console.log(moviesContext.moviesData);
+  function clrMoviesList() {
+    moviesContext.setSearchValue("nonsencenonsencenonsence");
+  }
+
+  function switchToFav() {
+    console.log(moviesContext.favoritesFlag);
+    moviesContext.setFlag(!moviesContext.favoritesFlag);
+    console.log(moviesContext.favoritesFlag);
   }
 
   function toggleDrawer(anchor: Anchor, open: boolean) {
@@ -71,9 +78,15 @@ function NavigationBar() {
           <ListIcon fontSize="small" />
           &nbsp;Clear Movie List
         </ListItem>
-        <ListItem button sx={liStyle}>
-          <FavoriteIcon fontSize="small" />
-          &nbsp;Favorite Movies
+        <ListItem onClick={switchToFav} button sx={liStyle}>
+          {moviesContext.favoritesFlag ? (
+            "back to list"
+          ) : (
+            <>
+              <FavoriteIcon fontSize="small" />
+              &nbsp; Favorite Movies
+            </>
+          )}
         </ListItem>
       </List>
     </Box>
@@ -110,7 +123,7 @@ function NavigationBar() {
       </Box>
       <Box p={3} display="flex" alignItems="center">
         <Button onClick={handleRandMovie} variant="contained" color="secondary">
-          Show Movie
+          Show Random Movies
         </Button>
 
         <Button sx={{ marginTop: "0.5rem" }}>

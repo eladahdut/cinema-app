@@ -24,11 +24,23 @@ export default function MoviesList() {
         overflow: "hidden auto",
       }}>
       <div className="mov-container">
-        {!!moviesContext?.moviesData?.results?.length
+        {moviesContext.favoritesFlag
+          ? !!moviesContext?.favoriteMovies?.length
+            ? moviesContext?.favoriteMovies.map((card, i) => {
+                return <MovieCard key={i} card={card} />;
+              })
+            : "No favorites yet"
+          : !!moviesContext?.moviesData?.results?.length
           ? moviesContext?.moviesData?.results.map((card, i) => {
               return <MovieCard key={i} card={card} />;
             })
           : "Search for movies"}
+
+        {/* {!!moviesContext?.moviesData?.results?.length
+          ? moviesContext?.moviesData?.results.map((card, i) => {
+              return <MovieCard key={i} card={card} />;
+            })
+          : "Search for movies"} */}
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ export const MoviesContext = createContext<MyContext>({
   setMoviesList: (list: any) => {},
   favoriteMovies: [],
   setFavoriteMovies: (fav: CardData) => {},
+  favoritesFlag: false,
+  setFlag: () => {},
 });
 
 export const useCont = () => {
@@ -18,6 +20,7 @@ const MoviesDataProvider = (props: any) => {
   const [moviesData, setMoviesData] = useState<MoviesData | null>(null);
   const [searchVal, setSearchVal] = useState("");
   const [favoriteMovies, setFavorites] = useState<CardData[]>([]);
+  const [favoritesFlag, setFavoritesFlag] = useState(false);
 
   const setMoviesList = (list: any): void => {
     setMoviesData(list);
@@ -27,6 +30,9 @@ const MoviesDataProvider = (props: any) => {
   };
   const setFavoriteMovies = (movieObj: CardData): void => {
     setFavorites((prevState) => [...prevState, movieObj]);
+  };
+  const setFlag = (): void => {
+    setFavoritesFlag(!favoritesFlag);
   };
 
   return (
@@ -38,6 +44,8 @@ const MoviesDataProvider = (props: any) => {
         setMoviesList,
         favoriteMovies,
         setFavoriteMovies,
+        favoritesFlag,
+        setFlag,
       }}>
       {props.children}
     </MoviesContext.Provider>

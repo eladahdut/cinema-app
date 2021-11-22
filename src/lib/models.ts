@@ -29,4 +29,6 @@ export interface MyContext {
   setMoviesList: (list: any) => void;
   favoriteMovies: CardData[];
   setFavoriteMovies: (fav: CardData) => void;
+  favoritesFlag: boolean;
+  setFlag: (opositeFlag: boolean) => void;
 }

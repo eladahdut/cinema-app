@@ -120,11 +120,13 @@ export default function MovieCard(props: any) {
   function addToFavorites(movieObj: CardData) {
     if (moviesContext.favoriteMovies.length === 0) {
       moviesContext.setFavoriteMovies(movieObj);
+      alert("movie added");
     }
     moviesContext.favoriteMovies.map((e) => {
       if (e.id === movieObj.id) {
         setSnackMsg("movie is already in favorites");
       } else {
+        alert("movie added");
         moviesContext.setFavoriteMovies(movieObj);
       }
     });
