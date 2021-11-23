@@ -1,8 +1,5 @@
 {
   "name": "cinema-app",
-  "homepage": "https://eladahdut.github.io/cinema-app/",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,6 +29,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "homepage": "https://eladahdut.github.io/cinema-app/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
