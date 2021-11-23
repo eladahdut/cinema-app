@@ -52,7 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },"homepage": "https://eladahdut.github.io/cinema-app/",
+  },
+  "homepage": "https://eladahdut.github.io/cinema-app/",
   "devDependencies": {
     "@types/lodash": "^4.14.176"
   }
