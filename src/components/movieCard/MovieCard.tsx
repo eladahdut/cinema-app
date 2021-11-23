@@ -118,18 +118,31 @@ export default function MovieCard(props: any) {
   }
 
   function addToFavorites(movieObj: CardData) {
+    let idsArray: number[] = [];
     if (moviesContext.favoriteMovies.length === 0) {
+      idsArray.push(movieObj.id);
       moviesContext.setFavoriteMovies(movieObj);
-      alert("movie added");
+      alert("movie added because length = 0");
     }
-    moviesContext.favoriteMovies.map((e) => {
-      if (e.id === movieObj.id) {
-        setSnackMsg("movie is already in favorites");
-      } else {
-        alert("movie added");
-        moviesContext.setFavoriteMovies(movieObj);
-      }
-    });
+    else if (idsArray.indexOf(movieObj.id) < 0) {
+      moviesContext.setFavoriteMovies(movieObj);
+      alert("movie exists")
+      
+      
+    }
+    else alert("movie will add");
+   console.log(moviesContext.favoriteMovies);
+
+
+   
+    // moviesContext.favoriteMovies.map((e) => {
+    //   if (e.id === movieObj.id) {
+    //     setSnackMsg("movie is already in favorites");
+    //   } else {
+    //     alert("movie added because no in favs yet");
+    //     moviesContext.setFavoriteMovies(movieObj);
+    //   }
+    // });
   }
 
   const noImg =
