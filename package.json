@@ -29,7 +29,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "homepage": "https://eladahdut.github.io/cinema-app/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
@@ -53,7 +52,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
+  },"homepage": "https://eladahdut.github.io/cinema-app/",
   "devDependencies": {
     "@types/lodash": "^4.14.176"
   }
