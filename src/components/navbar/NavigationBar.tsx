@@ -8,9 +8,9 @@ import ListItem from "@mui/material/ListItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TheatersOutlinedIcon from "@material-ui/icons/TheatersOutlined";
 import AddIcon from "@mui/icons-material/Add";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ClearIcon from '@mui/icons-material/Clear';
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { debounce } from "lodash";
 import { useCont } from "../../context/moviesContext";
 
@@ -82,7 +82,8 @@ function NavigationBar() {
         <ListItem onClick={switchToFav} button sx={liStyle}>
           {moviesContext.favoritesFlag ? (
             <>
-            <ArrowBackIcon fontSize="small" />&nbsp;
+            <ArrowBackIcon fontSize="small" />
+            &nbsp;
             back to list
             </>
           ) : (
