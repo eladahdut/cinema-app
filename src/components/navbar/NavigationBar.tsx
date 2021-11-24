@@ -47,9 +47,7 @@ function NavigationBar() {
   }
 
   function switchToFav() {
-    console.log(moviesContext.favoritesFlag);
     moviesContext.setFlag(!moviesContext.favoritesFlag);
-    console.log(moviesContext.favoritesFlag);
   }
 
   function toggleDrawer(anchor: Anchor, open: boolean) {

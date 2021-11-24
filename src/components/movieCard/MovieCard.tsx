@@ -117,43 +117,51 @@ export default function MovieCard(props: any) {
     setOverview(val);
   }
 
+  // let idsArray: number[] = [];
+  let idsSet = new Set();
+
   function addToFavorites(movieObj: CardData) {
-    let idsArray: number[] = [];
-    if (moviesContext.favoriteMovies.length === 0) {
-      idsArray.push(movieObj.id);
-      moviesContext.setFavoriteMovies(movieObj);
-      alert("movie added because length = 0");
+
+    if (idsSet.has(movieObj.id)) {
+      console.log(idsSet);
+      
+      console.log("has id");
+      // moviesContext.setFavoriteMovies(movieObj);
     }
-    else if (idsArray.indexOf(movieObj.id) < 0) {
-      moviesContext.setFavoriteMovies(movieObj);
-      alert("movie exists")
+    else {console.log("movie added");
+    idsSet.add(movieObj.id)}
+    
+    
+    
+    // if (moviesContext.favoriteMovies.length === 0) {
+      //   idsArray.push(movieObj.id);
+      //   moviesContext.setFavoriteMovies(movieObj);
+      //   alert("movie added because length = 0");
+      // }
       
       
-    }
-    else alert("movie will add");
-   console.log(moviesContext.favoriteMovies);
-
-
-   
-    // moviesContext.favoriteMovies.map((e) => {
-    //   if (e.id === movieObj.id) {
-    //     setSnackMsg("movie is already in favorites");
-    //   } else {
-    //     alert("movie added because no in favs yet");
-    //     moviesContext.setFavoriteMovies(movieObj);
-    //   }
-    // });
-  }
-
-  const noImg =
-    "https://kfcb.go.ke/sites/default/files/styles/film/public/2021-03/500x735_0_0_64.png?itok=9OY_x7fE";
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  return (
-    <Card
+      
+      // moviesContext.favoriteMovies.map((e) => {
+        //   if (e.id === movieObj.id) {
+          //     setSnackMsg("movie is already in favorites");
+          //   } else {
+            //     alert("movie added because no in favs yet");
+            //     ç
+            //   }
+            // });
+          }
+          
+          console.log('idsSet')
+          
+          const noImg =
+          "https://kfcb.go.ke/sites/default/files/styles/film/public/2021-03/500x735_0_0_64.png?itok=9OY_x7fE";
+          
+          const handleExpandClick = () => {
+            setExpanded(!expanded);
+          };
+          
+          return (
+            <Card
       sx={{
         width: 300,
         marginBottom: 4,
