@@ -20,6 +20,7 @@ export interface CardData {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  favorite: boolean;
 }
 
 export interface MyContext {
