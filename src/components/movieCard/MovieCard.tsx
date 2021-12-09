@@ -81,8 +81,11 @@ export default function MovieCard(props: any) {
             });
           }}
           aria-label="add to favorites">
-          <FavoriteIcon />
-
+          {props.card.favorite ? (
+            <FavoriteIcon htmlColor="red" />
+          ) : (
+            <FavoriteIcon htmlColor="black" />
+          )}
           <Snackbar
             anchorOrigin={{ vertical, horizontal }}
             open={openSnack}
@@ -117,51 +120,20 @@ export default function MovieCard(props: any) {
     setOverview(val);
   }
 
-  // let idsArray: number[] = [];
-  let idsSet = new Set();
-
   function addToFavorites(movieObj: CardData) {
+    props.card.favorite = true;
+    moviesContext.setFavoriteMovies(movieObj);
+  }
 
-    if (idsSet.has(movieObj.id)) {
-      console.log(idsSet);
-      
-      console.log("has id");
-      // moviesContext.setFavoriteMovies(movieObj);
-    }
-    else {console.log("movie added");
-    idsSet.add(movieObj.id)}
-    
-    
-    
-    // if (moviesContext.favoriteMovies.length === 0) {
-      //   idsArray.push(movieObj.id);
-      //   moviesContext.setFavoriteMovies(movieObj);
-      //   alert("movie added because length = 0");
-      // }
-      
-      
-      
-      // moviesContext.favoriteMovies.map((e) => {
-        //   if (e.id === movieObj.id) {
-          //     setSnackMsg("movie is already in favorites");
-          //   } else {
-            //     alert("movie added because no in favs yet");
-            //     ç
-            //   }
-            // });
-          }
-          
-          console.log('idsSet')
-          
-          const noImg =
-          "https://kfcb.go.ke/sites/default/files/styles/film/public/2021-03/500x735_0_0_64.png?itok=9OY_x7fE";
-          
-          const handleExpandClick = () => {
-            setExpanded(!expanded);
-          };
-          
-          return (
-            <Card
+  const noImg =
+    "https://kfcb.go.ke/sites/default/files/styles/film/public/2021-03/500x735_0_0_64.png?itok=9OY_x7fE";
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  return (
+    <Card
       sx={{
         width: 300,
         marginBottom: 4,

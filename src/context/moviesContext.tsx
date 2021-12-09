@@ -29,7 +29,12 @@ const MoviesDataProvider = (props: any) => {
     setSearchVal(val);
   };
   const setFavoriteMovies = (movieObj: CardData): void => {
-    setFavorites((prevState) => [...prevState, movieObj]);
+    const found = favoriteMovies.find((movie) => movie.id === movieObj.id);
+    if (!found) {
+      setFavorites((prevState) => [...prevState, movieObj]);
+    } else {
+      alert(`movie with id ${movieObj.id} already exists`);
+    }
   };
   const setFlag = (): void => {
     setFavoritesFlag(!favoritesFlag);

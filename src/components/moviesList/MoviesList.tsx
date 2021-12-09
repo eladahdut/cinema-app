@@ -15,7 +15,7 @@ export default function MoviesList() {
     if (moviesContext.searchVal.length > 1) {
       setMovies(moviesContext.searchVal);
     }
-  }, [moviesContext]);
+  }, [moviesContext.searchVal]);
 
   return (
     <div
