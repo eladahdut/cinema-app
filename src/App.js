@@ -15,7 +15,7 @@ function App() {
         }}
       >
         <h1 style={{ margin: "1rem 0 0.25rem 0", color: "rgb(117, 16, 247)" }}>
-          coco jumbo
+          Movies List
         </h1>
       </Box>
       <hr style={{ width: "2%", border: "1px solid rgb(117 16 247 / 70%)" }} />
