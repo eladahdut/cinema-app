@@ -121,8 +121,10 @@ export default function MovieCard(props: any) {
   }
 
   function addToFavorites(movieObj: CardData) {
-    props.card.favorite = true;
-    moviesContext.setFavoriteMovies(movieObj);
+    if (!props.card.favorite) {
+      props.card.favorite = true;
+      moviesContext.setFavoriteMovies(movieObj);
+    } else setSnackMsg("Movie Already In Favorites");
   }
 
   const noImg =
