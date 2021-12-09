@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/cinema-app/static/css/main.a41af9a9.chunk.css",
+    "main.js": "/cinema-app/static/js/main.3abe6f0e.chunk.js",
+    "main.js.map": "/cinema-app/static/js/main.3abe6f0e.chunk.js.map",
+    "runtime-main.js": "/cinema-app/static/js/runtime-main.e74c0167.js",
+    "runtime-main.js.map": "/cinema-app/static/js/runtime-main.e74c0167.js.map",
+    "static/js/2.eeb0c723.chunk.js": "/cinema-app/static/js/2.eeb0c723.chunk.js",
+    "static/js/2.eeb0c723.chunk.js.map": "/cinema-app/static/js/2.eeb0c723.chunk.js.map",
+    "index.html": "/cinema-app/index.html",
+    "static/css/main.a41af9a9.chunk.css.map": "/cinema-app/static/css/main.a41af9a9.chunk.css.map",
+    "static/js/2.eeb0c723.chunk.js.LICENSE.txt": "/cinema-app/static/js/2.eeb0c723.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e74c0167.js",
+    "static/js/2.eeb0c723.chunk.js",
+    "static/css/main.a41af9a9.chunk.css",
+    "static/js/main.3abe6f0e.chunk.js"
+  ]
+}
