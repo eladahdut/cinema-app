@@ -26,6 +26,8 @@ const MoviesDataProvider = (props: any) => {
     setMoviesData(list);
   };
   const setSearchValue = (val: string): void => {
+    console.log("search value: " + val);
+
     setSearchVal(val);
   };
   const setFavoriteMovies = (movieObj: CardData): void => {
